@@ -21,14 +21,14 @@ const openai = new OpenAI({
 app.use(cors());
 app.use(express.json());
 
-http://localhost:8080/api/transcript/1
+https://carevoicebackend-51a59399bb40.herokuapp.com/api/transcript/1
 
 app.post("/convert-to-summary", async (req, res) => {
   console.log(req.body);
   try {
     const transcriptBodies = await Promise.all(req.body.transcript_ids.map(async (id) => {
       console.log(id);
-      const response = await fetch(`http://localhost:8080/api/transcript/${id}`);
+      const response = await fetch(`https://carevoicebackend-51a59399bb40.herokuapp.com/api/transcript/${id}`);
 
       if (!response.ok) {
         throw new Error(`Failed to fetch transcript with id ${id}`);
@@ -58,7 +58,7 @@ app.post("/convert-to-summary", async (req, res) => {
     const gptResponse = response.choices[0].message.content;
 
     // Send GPT response to another server
-    const summaryResponse = await fetch(`http://localhost:8080/api/summary/patient/${patientId}`, {
+    const summaryResponse = await fetch(`https://carevoicebackend-51a59399bb40.herokuapp.com/api/summary/patient/${patientId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ app.post("/convert-to-darp", async (req, res) => {
   try {
     const transcriptBodies = await Promise.all(req.body.transcript_ids.map(async (id) => {
       console.log(id);
-      const response = await fetch(`http://localhost:8080/api/transcript/${id}`);
+      const response = await fetch(`https://carevoicebackend-51a59399bb40.herokuapp.com/api/transcript/${id}`);
 
       if (!response.ok) {
         throw new Error(`Failed to fetch transcript with id ${id}`);
@@ -120,7 +120,7 @@ app.post("/convert-to-darp", async (req, res) => {
     const gptResponses = Object.assign({}, ...responses);
 
     // Send GPT responses to another server
-    const summaryResponse = await fetch(`http://localhost:8080/api/DARP/patient/${patientId}`, {
+    const summaryResponse = await fetch(`https://carevoicebackend-51a59399bb40.herokuapp.com/api/DARP/patient/${patientId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -145,7 +145,7 @@ app.post("/convert-to-head-to-toe", async (req, res) => {
   try {
     const transcriptBodies = await Promise.all(req.body.transcript_ids.map(async (id) => {
       console.log(id);
-      const response = await fetch(`http://localhost:8080/api/transcript/${id}`);
+      const response = await fetch(`https://carevoicebackend-51a59399bb40.herokuapp.com/api/transcript/${id}`);
 
       if (!response.ok) {
         throw new Error(`Failed to fetch transcript with id ${id}`);
@@ -192,7 +192,7 @@ app.post("/convert-to-head-to-toe", async (req, res) => {
     const gptResponses = Object.assign({}, ...responses);
 
     // Send GPT responses to another server
-    const summaryResponse = await fetch(`http://localhost:8080/api/head-to-toe/patient/${patientId}`, {
+    const summaryResponse = await fetch(`https://carevoicebackend-51a59399bb40.herokuapp.com/api/head-to-toe/patient/${patientId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -316,9 +316,9 @@ app.get("/DARP/:id", (req, res) => {
 
 
 
-// ✅ Make sure this part exists! It starts the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// // ✅ Make sure this part exists! It starts the server
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
 
 
