@@ -21,8 +21,6 @@ const openai = new OpenAI({
 app.use(cors());
 app.use(express.json());
 
-https://carevoicebackend-51a59399bb40.herokuapp.com/api/transcript/1
-
 app.post("/convert-to-summary", async (req, res) => {
   console.log(req.body);
   try {
